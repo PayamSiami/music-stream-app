@@ -19,7 +19,7 @@ export default function ProfilePage() {
     const getImagePath = () => {
         // Clean the playlistId to only get the number
         const id = String(playlistId).replace(/\D/g, '');
-        return `./s${id}.png`;
+        return `/s${id}.png`;
     };
 
     const playlists = [
@@ -82,6 +82,7 @@ export default function ProfilePage() {
                                 height={64}
                                 className="w-full h-full object-cover"
                                 priority={true}
+                                loader={({ src }) => src}
                             />
                         </div>
                     </div>

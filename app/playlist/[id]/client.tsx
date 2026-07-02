@@ -90,7 +90,7 @@ export default function MusicPlayerClient() {
 
     const getImagePath = () => {
         const id = String(playlistId).replace(/\D/g, '');
-        return `./pl${id}.png`;
+        return `/pl${id}.png`;
     };
 
     return (
@@ -153,6 +153,7 @@ export default function MusicPlayerClient() {
                                 fill
                                 className="object-cover"
                                 priority
+                                loader={({ src }) => src}
                                 onError={() => setImageError(true)}
                             />
                         ) : (
