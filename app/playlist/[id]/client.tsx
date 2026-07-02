@@ -88,9 +88,20 @@ export default function MusicPlayerClient() {
         setVolume(parseInt(e.target.value));
     };
 
+    // ✅ Get basePath from environment variable
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
     const getImagePath = () => {
         const id = String(playlistId).replace(/\D/g, '');
-        return `./pl${id}.png`;
+        // For local: /pl1.png
+        // For production: /music-stream-app/pl1.png
+        return `${basePath}/pl${id}.png`;
+    };
+
+    const getLinkPath = (path: string) => {
+        // For local: /playlist
+        // For production: /music-stream-app/playlist
+        return `${basePath}${path}`;
     };
 
     return (
@@ -115,7 +126,7 @@ export default function MusicPlayerClient() {
                     animate={{ y: 0, opacity: 1 }}
                     className="flex justify-between items-center mb-8"
                 >
-                    <Link href="/playlist">
+                    <Link href={getLinkPath("/playlist")}>
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
@@ -154,6 +165,7 @@ export default function MusicPlayerClient() {
                                 className="object-cover"
                                 priority
                                 onError={() => setImageError(true)}
+                                unoptimized={true}
                             />
                         ) : (
                             <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -211,10 +223,10 @@ export default function MusicPlayerClient() {
                             value={progress}
                             onChange={handleProgressChange}
                             className="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer
-                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 
-                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-r 
-                [&::-webkit-slider-thumb]:from-pink-500 [&::-webkit-slider-thumb]:to-purple-500
-                [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:shadow-purple-500/50"
+                            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 
+                            [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-r 
+                            [&::-webkit-slider-thumb]:from-pink-500 [&::-webkit-slider-thumb]:to-purple-500
+                            [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:shadow-purple-500/50"
                             style={{
                                 background: `linear-gradient(to right, #a855f7 0%, #ec4899 ${progress}%, rgba(255,255,255,0.1) ${progress}%, rgba(255,255,255,0.1) 100%)`,
                             }}
@@ -329,8 +341,8 @@ export default function MusicPlayerClient() {
                         value={volume}
                         onChange={handleVolumeChange}
                         className="flex-1 h-1 bg-white/20 rounded-full appearance-none cursor-pointer
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 
-              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-purple-500"
+                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 
+                        [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-purple-500"
                         style={{
                             background: `linear-gradient(to right, #a855f7 0%, #a855f7 ${volume}%, rgba(255,255,255,0.1) ${volume}%, rgba(255,255,255,0.1) 100%)`,
                         }}
