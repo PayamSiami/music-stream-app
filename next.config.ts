@@ -1,11 +1,17 @@
-import type { NextConfig } from "next";
+// next.config.js
+const isProduction = process.env.NODE_ENV === "production";
+const basePath = isProduction ? "/music-stream-app" : "";
 
-const nextConfig: NextConfig = {
-// output: 'export',
-//   basePath: '/music-stream-app',
-//   assetPrefix: '/music-stream-app/',
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "export",
+  basePath: basePath,
+  assetPrefix: basePath ? basePath + "/" : "",
   images: {
     unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 
