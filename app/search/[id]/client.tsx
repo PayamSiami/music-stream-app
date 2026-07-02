@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
     ChevronRight,
     ArrowLeft,
     Settings,
-    User,
     Music,
     Users,
-    Heart,
-    LogOut,
-    UserPlus,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,16 +15,8 @@ import { useParams } from "next/navigation";
 
 export default function ProfilePage() {
     const [showSettings, setShowSettings] = useState(false);
-    const [showCloseFriends, setShowCloseFriends] = useState(false);
     const params = useParams();
     const profileId = Array.isArray(params.id) ? params.id[0] : params.id || "1";
-
-    const closeFriends = [
-        { name: "Emma", status: "online" },
-        { name: "James", status: "offline" },
-        { name: "Sophie", status: "online" },
-        { name: "Liam", status: "away" },
-    ];
 
     const playlists = [
         { name: "Chill Vibes", tracks: 24 },
@@ -60,7 +48,7 @@ export default function ProfilePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
+        <div className="min-h-screen bg-linear-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
             {/* Background animated gradient */}
             <motion.div
                 className="fixed inset-0 opacity-20 pointer-events-none"
@@ -83,7 +71,7 @@ export default function ProfilePage() {
                     animate={{ y: 0, opacity: 1 }}
                     className="flex justify-between items-center mb-6"
                 >
-                    <Link href="/">
+                    <Link href="/search">
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}

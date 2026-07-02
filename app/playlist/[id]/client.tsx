@@ -98,14 +98,8 @@ export default function MusicPlayerClient() {
         return `${basePath}/pl${id}.png`;
     };
 
-    const getLinkPath = (path: string) => {
-        // For local: /playlist
-        // For production: /music-stream-app/playlist
-        return `${basePath}${path}`;
-    };
-
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
+        <div className="min-h-screen bg-linear-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
             <motion.div
                 className="fixed inset-0 opacity-30 pointer-events-none"
                 animate={{
@@ -126,7 +120,7 @@ export default function MusicPlayerClient() {
                     animate={{ y: 0, opacity: 1 }}
                     className="flex justify-between items-center mb-8"
                 >
-                    <Link href={getLinkPath("/playlist")}>
+                    <Link href={"/playlist"}>
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
