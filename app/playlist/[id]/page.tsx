@@ -4,6 +4,7 @@ import MusicPlayerClient from './client';
 // ✅ This is the server component - can use generateStaticParams
 export function generateStaticParams() {
     return [
+        { id: "0" },
         { id: "1" },
         { id: "2" },
         { id: "3" },
