@@ -6,16 +6,25 @@ import {
   ChevronRight,
   ArrowLeft,
   Settings,
-  Plus,
-  Music2,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
+export function generateStaticParams() {
+  // Generate IDs for all the playlists you want to pre-render
+  return [
+    { id: "1" },
+    { id: "2" },
+    { id: "3" },
+    { id: "4" },
+    { id: "5" },
+    { id: "6" },
+  ];
+}
+
 export default function ProfilePage() {
   const [showSettings, setShowSettings] = useState(false);
-  const [showCloseFriends, setShowCloseFriends] = useState(false);
   const params = useParams();
   const playlistId = Array.isArray(params.id) ? params.id[0] : params.id || "1";
 
