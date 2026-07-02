@@ -19,9 +19,9 @@ export default function Footer() {
 
 
     const navItems: NavItem[] = [
-        { icon: Home, label: "Home", id: "home", path: "/" },
-        { icon: Search, label: "Search", id: "search", path: "/search" },
-        { icon: IconArticle, label: "Profile", id: "profile", path: "/profile" },
+        { icon: Home, label: "", id: "home", path: "/" },
+        { icon: Search, label: "", id: "search", path: "/search" },
+        { icon: IconArticle, label: "", id: "profile", path: "/articles" },
     ];
     return (
         <motion.div

@@ -303,7 +303,7 @@ export default function MusicApp() {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="flex flex-col items-center gap-1 shrink-0 group cursor-pointer"
               >
-                <Link href={"/play"}>
+                <Link href={"/playlist"}>
                   <div className="relative">
                     <div
                       className={`w-16 h-24 rounded-md overflow-hidden ring-2 ring-white/10 group-hover:ring-[#7F6AFF]/50 transition-all duration-300 ${friend.isActive ? 'ring-[#7F6AFF]/30' : ''

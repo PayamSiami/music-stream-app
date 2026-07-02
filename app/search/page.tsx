@@ -331,14 +331,16 @@ export default function SearchPage() {
                                     animate={{ opacity: 1 }}
                                     whileHover={{ scale: 1.01 }}
                                 >
-                                    <Image
-                                        src={`./s${index}.png`}
-                                        alt={'girl'}
-                                        width={64}
-                                        height={64}
-                                        className="w-16 h-16 object-cover rounded-lg"
-                                        priority={true}
-                                    />
+                                    <Link href={`/search/${index}`}>
+                                        <Image
+                                            src={`./s${index}.png`}
+                                            alt={'girl'}
+                                            width={64}
+                                            height={64}
+                                            className="w-16 h-16 object-cover rounded-lg"
+                                            priority={true}
+                                        />
+                                    </Link>
                                 </motion.div>
                             );
                         })

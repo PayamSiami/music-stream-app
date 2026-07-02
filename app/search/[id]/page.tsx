@@ -11,10 +11,19 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
 export default function ProfilePage() {
   const [showSettings, setShowSettings] = useState(false);
   const [showCloseFriends, setShowCloseFriends] = useState(false);
+  const params = useParams();
+  const playlistId = Array.isArray(params.id) ? params.id[0] : params.id || "1";
+
+  const getImagePath = () => {
+    // Clean the playlistId to only get the number
+    const id = String(playlistId).replace(/\D/g, '');
+    return `/s${id}.png`;
+  };
 
   const playlists = [
     { name: "Chill Vibes", tracks: 24, duration: "1:45:00", color: "#FF6B6B", isLiked: true },
@@ -70,7 +79,7 @@ export default function ProfilePage() {
           <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-[2px]">
             <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
               <Image
-                src={`./boy.png`}
+                src={getImagePath()}
                 alt={'girl'}
                 width={64}
                 height={64}
@@ -89,54 +98,7 @@ export default function ProfilePage() {
         <p className="text-gray-300 text-sm mb-4">
           In a world of worries, be the warrior
         </p>
-        {/* Close Friends Button */}
-        <div className="flex flex-col">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => setShowCloseFriends(!showCloseFriends)}
-            className="px-6 py-2 rounded-xl bg-[#5554FF] hover:bg-white/10 border border-white/10 text-sm font-medium mb-3 flex items-center gap-2 text-center grid"
-          >
-            Close Friends
-          </motion.button>
-
-          {/* Log Out Button */}
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="px-6 py-2 text-[#7F7EFF] text-sm font-medium items-center gap-2"
-          >
-            Log Out
-          </motion.button>
-        </div>
-
       </motion.div>
-
-      {/* Action Buttons */}
-      <motion.div
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.15 }}
-        className="grid grid-cols-2 gap-3 mb-6"
-      >
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="p-3 rounded-xl text-[#7F7EFF] border border-[#7F7EFF] font-medium flex items-center justify-center gap-2"
-        >
-          <Plus size={18} />
-          Create Room
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium flex items-center justify-center gap-2"
-        >
-          <Music2 size={18} />
-          New Playlist
-        </motion.button>
-      </motion.div>
-
       {/* Playlist Section Header */}
       <motion.div
         initial={{ y: 10, opacity: 0 }}
@@ -176,7 +138,7 @@ export default function ProfilePage() {
               style={{ boxShadow: 'none' }}
             >
               <Image
-                src={`./p${index}.png`}
+                src={`../p${index}.png`}
                 alt={friend.name}
                 width={64}
                 height={64}
@@ -227,7 +189,7 @@ export default function ProfilePage() {
               style={{ boxShadow: 'none' }}
             >
               <Image
-                src={`./p${index + 4}.png`}
+                src={`../p${index + 4}.png`}
                 alt={room.name}
                 width={64}
                 height={64}
