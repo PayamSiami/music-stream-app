@@ -19,7 +19,7 @@ export default function ProfilePage() {
     const getImagePath = () => {
         // Clean the playlistId to only get the number
         const id = String(playlistId).replace(/\D/g, '');
-        return `/s${id}.png`;
+        return `./s${id}.png`;
     };
 
     const playlists = [

@@ -337,7 +337,7 @@ export default function SearchPage() {
                                             alt={'girl'}
                                             width={64}
                                             height={64}
-                                            className="w-16 h-16 object-cover rounded-lg"
+                                            className="w-16 h-16 object-cover rounded-full"
                                             priority={true}
                                         />
                                     </Link>
